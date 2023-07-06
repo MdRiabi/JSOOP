@@ -16,12 +16,32 @@ constructor(title, imageUrl, price, description)
 }
 }
 
+class ShoppingCart {
+
+    items = [];
+
+    render() {
+        const cartEl = document.createElement('section');
+        cartEl.innerHTML = `
+        <h2>\$ ${2}</h2>
+        <button>Order Now:!</button>
+        
+        `;
+        cartEl.className = 'cart';
+        return cartEl;
+    }
+}
+
 
 
 class ProductItem{
 
     constructor(product){
         this.product = product;
+    }
+
+    addToCart(){
+
     }
 
     render(){
@@ -38,6 +58,8 @@ class ProductItem{
             <button>Add To Cart</button>
             </div>
          </div>`;
+         const addCartButton = prodEl.querySelector('button');
+         addCartButton.addEventListener('click', this.addToCart.bind(this) );
 
          return prodEl;
     }
@@ -68,7 +90,6 @@ class ProductList{
 constructor(){}
 
 render(){
-    const renderHook = document.getElementById('app');
     const productList = document.createElement('ul');
 
     for(const prod of this.products){
@@ -76,19 +97,41 @@ render(){
         const prodectItem = new ProductItem(prod);
         const prodEl  = prodectItem.render();
 
-         productList.append(prodEl);
-
-         
+         productList.append(prodEl);   
     }
-    renderHook.append(productList);
+    return productList;
 }
 
 
+
 }
 
+
+class Shop {
+
+render(){
+
+    const renderHook = document.getElementById('app');
+
+    const cart = new ShoppingCart();
+     const cartEl = cart.render();
 
 
 const productList = new ProductList();
-productList.render()
+ const productListEl = productList.render()
+
+ renderHook.append(cartEl);
+ this.render.append(productListEl);
+
+
+}
+
+
+}
+
+const shop = new shop();
+shop.render();
+
+
 
 //5. Working with Constructor Methods
