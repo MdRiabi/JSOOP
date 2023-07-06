@@ -41,7 +41,8 @@ class ProductItem{
     }
 
     addToCart(){
-
+console.log('adding product to cart');
+console.log(this.product);
     }
 
     render(){
